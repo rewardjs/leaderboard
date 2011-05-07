@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>Leaderboard | rewardjs</title>
+
+<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <style>
+        body {
+            border-top: 5px solid #8BC657;
+            background-color: #F1E6C2;
+            color: black;
+            padding: 0; margin: 0;
+        }
+        header { display: block; padding-top: 25px; }
+        header a { padding: 0 39px; }
+        header a img { border: none; }
+        section.body { }
+        .body h3 {
+            font-family: Georgia,"Times New Roman",Times,serif;
+            font-size: 22px;
+        }
+        .body table {
+            width: 640px;
+        }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a title="rewardjs" href="http://rewardjs.com">
+        <img alt="rewardjs" src="http://rewardjs.com/wp-uploads/2011/05/rewardjs-header.png"/>
+      </a>
+    </header>
+
+    <section class="body">
+        <h3>Today's Leaders</h3>
+        <?
+            if (count($commits) == 0) {
+                echo "<p>Bummer! Nobody's committed any fixes yet today!</p>";
+            } else {
+                echo "<table border='1'><thead><th>Rank</th><th>Committer</th>";
+                echo "<th>Bugs closed</th></thead><tbody>";
+
+                foreach ($commits as $i=>$item) {
+                    echo "<tr><td>" . ((integer)$i+1) . "</td>";
+                    echo "<td>" . $item['creator'] . "</td>";
+                    echo "<td>" . $item['count'] . "</td></tr>";
+                }
+
+                echo "</tbody></table>";
+            }
+        ?>
+    </section>
+  </body>
+</html>

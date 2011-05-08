@@ -12,8 +12,14 @@ if ($trackerType == 'trac') {
     include('trac.php');
 }
 
-# get today's commits
-$commits = getCommitsForToday($trackerDomain);
+# get requested report (defaults to today)
+$report = $_GET['report'];
+if ($report == 'week') {
+    $commits = getCommitsForThisWeek($trackerDomain);
+} else {
+    $report = 'today';
+    $commits = getCommitsForToday($trackerDomain);
+}
 
 # return the proper output
 header('Content-type: text/html');

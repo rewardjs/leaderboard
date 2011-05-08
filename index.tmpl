@@ -15,7 +15,7 @@
         header { display: block; padding-top: 25px; }
         header a { padding: 0 39px; }
         header a img { border: none; }
-        section.body { }
+        section.body { margin: 0 20px; }
         .body h3 {
             font-family: Georgia,"Times New Roman",Times,serif;
             font-size: 22px;
@@ -33,8 +33,17 @@
     </header>
 
     <section class="body">
-        <h3>Today's Leaders</h3>
-        <?
+        <h3><?php
+            if ($report == 'today') {
+                echo "Today's Leaders";
+            } else if ($report == 'week') {
+                echo "This Week's Leaders";
+            } else {
+                echo "(Unknown report type:" . $report . ")";
+            }
+        ?></h3>
+
+        <?php
             if (count($commits) == 0) {
                 echo "<p>Bummer! Nobody's committed any fixes yet today!</p>";
             } else {
@@ -50,6 +59,14 @@
                 echo "</tbody></table>";
             }
         ?>
+
+        <a href="?report=today">Today</a> |
+        Yesterday |
+        <a href="?report=week">This Week</a> |
+        Last Week |
+        This Month |
+        Last Month |
+        All Time
     </section>
   </body>
 </html>

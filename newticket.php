@@ -1,4 +1,8 @@
 <?php
+/*
+  QUICK BACKEND -- On the production server this should be secured via an .htaccess / htpasswd file
+*/
+
 require_once("mysql.inc.php");
 require_once("trac.php");
 

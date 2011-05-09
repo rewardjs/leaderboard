@@ -18,7 +18,8 @@ CREATE TABLE rewards_leaderboard (
 	pull_request TEXT NOT NULL,
 	closed_on DATE NOT NULL,
 	INDEX author_github (author_github),
-	INDEX closed_on (closed_on)
+	INDEX closed_on (closed_on),
+	UNIQUE ticket_id (ticket_id)
 );
 
 */

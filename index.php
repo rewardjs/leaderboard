@@ -7,6 +7,13 @@ $date_end = "2011-05-28";
 $report = "all";
 if (!empty($_GET['report'])) {
 	$report = $_GET['report'];
+	if ($report == 'today') {
+		$date = date("Y-m-d", mktime());
+	} else if ($report == 'week') {
+		$daysFromMonday = date("N", mktime()) - 1;
+		$monday = mktime() - ($daysFromMonday * 3600 * 24);
+		$date_start = date("Y-m-d", $monday);
+	}
 	$date = strtotime($report);
 }
 if ($date) {

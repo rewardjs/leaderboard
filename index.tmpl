@@ -41,7 +41,7 @@
             } else if ($report == 'all') {
                 echo "Month's Leaders";
             } else {
-                echo "(Unknown report type:" . $report . ")";
+				echo "<p>$date_start - $date_end</p>";
             }
         ?></h3>
 
@@ -68,7 +68,7 @@
         Last Week |
         This Month |
         Last Month |
-        All Time
+        <a href="?report=all">All Time</a>
     </section>
   </body>
 </html>

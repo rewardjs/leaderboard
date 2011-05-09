@@ -62,8 +62,9 @@ function getTickets() {
 $tickets = getTickets();
 $stmt = $mysqli->prepare("SELECT ticket_id, closed_on, author_github, pull_request FROM rewards_leaderboard WHERE ticket_id = ?");
 $stmt->bind_result($ticket_id, $closed_on, $pull_request, $author_github);
-
+echo "Check the box / Fill in the github/pull request for elligable tickets and submit form.";
 echo "<form method='post'><table>";
+echo "<tr><th>Ticket</th><th>Date</th><th>fixer's github</th><th>pull request</th></tr>";
 
 foreach ($tickets as $ticket) {
 	$stmt->bind_param( "i", $ticket['ticket_id'] );

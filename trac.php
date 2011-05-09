@@ -2,15 +2,6 @@
 
 $templateUrl = "http://{{server}}/timeline?from={{from}}&daysback=7&ticket=on&format=rss";
 
-
-function count_cmp($a, $b)
-{
-	if ($a['count'] == $b['count']) {
-		return 0;
-	}
-	return ($a['count'] < $b['count']) ? 1 : -1;
-}
-
 function fetch($url) {
 	// init cURL
 	$session = curl_init();
@@ -89,42 +80,4 @@ function getFixedTickets( $serverName, $from = false )
 		return $fixed;
 	}
 }
-
-function getCommitsForToday($serverName) {
-	global $templateUrl;
-	if ($serverName) {
-		$fetchUrl = str_replace("{{server}}", $serverName, $templateUrl);
-		$fetchUrl = str_replace("{{days}}", "0", $fetchUrl);
-
-		// fetch raw RSS from Trac
-		$rawRSS = fetch($fetchUrl);
-
-		// process content
-		$committers = getFixedFromRss($rawRSS);
-
-		// sort results by bug count, descending
-		usort($committers, "count_cmp");
-	}
-	return $committers;
-}
-
-function getCommitsForThisWeek($serverName) {
-	global $templateUrl;
-	$dayOfTheWeek = date("l");
-	if ($serverName) {
-		$fetchUrl = str_replace("{{server}}", $serverName, $templateUrl);
-		$fetchUrl = str_replace("{{days}}", $dayOfTheWeek, $fetchUrl);
-
-		// fetch raw RSS from Trac
-		$rawRSS = fetch($fetchUrl);
-
-		// process content
-		$committers = getFixedFromRss($rawRSS);
-
-		// sort results by bug count, descending
-		usort($committers, "count_cmp");
-	}
-	return $committers;
-}
-
 ?>

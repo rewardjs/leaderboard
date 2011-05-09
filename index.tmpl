@@ -38,6 +38,8 @@
                 echo "Today's Leaders";
             } else if ($report == 'week') {
                 echo "This Week's Leaders";
+            } else if ($report == 'all') {
+                echo "Month's Leaders";
             } else {
                 echo "(Unknown report type:" . $report . ")";
             }
@@ -45,14 +47,14 @@
 
         <?php
             if (count($commits) == 0) {
-                echo "<p>Bummer! Nobody's committed any fixes yet today!</p>";
+                echo "<p>Bummer! No tickets found for this timeframe!</p>";
             } else {
                 echo "<table border='1'><thead><th>Rank</th><th>Committer</th>";
                 echo "<th>Bugs closed</th></thead><tbody>";
 
                 foreach ($commits as $i=>$item) {
                     echo "<tr><td>" . ((integer)$i+1) . "</td>";
-                    echo "<td>" . $item['creator'] . "</td>";
+                    echo "<td><a href='https://github.com/" . $item['author'] . "'>".$item['author']."</a></td>";
                     echo "<td>" . $item['count'] . "</td></tr>";
                 }
 

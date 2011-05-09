@@ -28,5 +28,3 @@ header('Content-type: text/html');
 #   hard-coding it in the php.
 
 include('index.tmpl');
-
-?>

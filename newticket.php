@@ -3,6 +3,17 @@
   QUICK BACKEND -- On the production server this should be secured via an .htaccess / htpasswd file
 */
 
+// feel free to change these on live to create a simple username/pass auth
+$username = ""; $password = "";
+
+if ($username && !isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) && ($_SERVER['PHP_AUTH_USER'] != $username || $_SERVER['PHP_AUTH_PW'] != $password)) {
+    header('WWW-Authenticate: Basic realm="My Realm"');
+    header('HTTP/1.0 401 Unauthorized');
+    echo 'You need to login';
+    exit;
+}
+
+
 require_once("mysql.inc.php");
 require_once("trac.php");
 

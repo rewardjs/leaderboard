@@ -9,10 +9,15 @@ if (!empty($_GET['report'])) {
 	$report = $_GET['report'];
 	if ($report == 'today') {
 		$date = date("Y-m-d", mktime());
-	} else if ($report == 'week') {
+	} else if ( $report == 'week' ) {
 		$daysFromMonday = date("N", mktime()) - 1;
 		$monday = mktime() - ($daysFromMonday * 3600 * 24);
 		$date_start = date("Y-m-d", $monday);
+	} else if ( $report == 'lastweek' ) {
+		$daysFromSunday = date("N", mktime());
+		$sunday = mktime() - ($daysFromSunday * 3600 * 24);
+		$date_end = date("Y-m-d", $sunday);
+		$date_start = date("Y-m-d", $sunday - ( 6 * 3600 * 24 ));
 	}
 	$date = strtotime($report);
 }

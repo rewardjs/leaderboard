@@ -40,7 +40,9 @@
                 echo "This Week's Leaders";
             } else if ($report == 'all') {
                 echo "Month's Leaders";
-            } else {
+            } else if ($report == 'lastweek') {
+				echo "Last Week";
+			} else {
 				echo "<p>$date_start - $date_end</p>";
             }
         ?></h3>
@@ -65,7 +67,7 @@
         <a href="?report=today">Today</a> |
         Yesterday |
         <a href="?report=week">This Week</a> |
-        Last Week |
+        <a href="?report=lastweek">Last Week</a> |
         This Month |
         Last Month |
         <a href="?report=all">All Time</a>

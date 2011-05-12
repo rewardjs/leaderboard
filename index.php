@@ -13,6 +13,7 @@ if (!empty($_GET['report'])) {
 		$daysFromMonday = date("N", mktime()) - 1;
 		$monday = mktime() - ($daysFromMonday * 3600 * 24);
 		$date_start = date("Y-m-d", $monday);
+		$date_end = date("Y-m-d", $monday + (3600 * 24 * 6));
 	} else if ( $report == 'lastweek' ) {
 		$daysFromSunday = date("N", mktime());
 		$sunday = mktime() - ($daysFromSunday * 3600 * 24);

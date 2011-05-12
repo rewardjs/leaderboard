@@ -42,9 +42,12 @@
                 echo "Month's Leaders";
             } else if ($report == 'lastweek') {
 				echo "Last Week";
+			}
+			if ($date_start != $date_end) {
+				echo " $date_start - $date_end";
 			} else {
-				echo "<p>$date_start - $date_end</p>";
-            }
+				echo " $date_start";
+			}
         ?></h3>
 
         <?php
@@ -65,12 +68,10 @@
         ?>
 
         <a href="?report=today">Today</a> |
-        Yesterday |
+        <a href="?report=<?php echo date("Y-m-d", strtotime("1 day ago")); ?>">Yesterday</a> |
         <a href="?report=week">This Week</a> |
         <a href="?report=lastweek">Last Week</a> |
-        This Month |
-        Last Month |
-        <a href="?report=all">All Time</a>
+        <a href="?report=all">May</a>
     </section>
   </body>
 </html>
